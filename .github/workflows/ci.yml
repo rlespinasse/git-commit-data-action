@@ -1,0 +1,26 @@
+name: Build
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # Need to download all history in order
+          # to make the tests work properly
+          fetch-depth: 0
+      - uses: docker://ffurrer/bats:latest
+        with:
+          args: "--recursive ."
+      - uses: cycjimmy/semantic-release-action@v2
+        with:
+          semantic_version: 17.0.7
+          branches: |
+            [
+              'v1.x'
+            ]
+          extra_plugins: |
+            @semantic-release/changelog@5.0.1
+            @semantic-release/git@9.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
