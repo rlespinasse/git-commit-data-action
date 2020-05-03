@@ -1,0 +1,9 @@
+# action.yml
+name: "Git Commit Info"
+description: "Action to expose git commit info"
+runs:
+  using: "node12"
+  main: "entrypoint.js"
+branding:
+  icon: "settings"
+  color: "gray-dark"
