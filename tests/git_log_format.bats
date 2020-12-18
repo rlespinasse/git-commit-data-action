@@ -31,6 +31,18 @@ source entrypoint.sh > /dev/null 2>&1
   test_git_log_format "$TEMPLATE_COMMITTER_EMAIL_FORMAT" "romain.lespinasse@gmail.com"
 }
 
+@test "git_log_format: message subject" {
+  test_git_log_format "$TEMPLATE_COMMIT_MESSAGE_SUBJECT_FORMAT" "build: prepare github action"
+}
+
+@test "git_log_format: message subject sanitized" {
+  test_git_log_format "$TEMPLATE_COMMIT_MESSAGE_SUBJECT_SANITIZED_FORMAT" "build-prepare-github-action"
+}
+
+@test "git_log_format: message body" {
+  test_git_log_format "$TEMPLATE_COMMIT_MESSAGE_BODY_FORMAT" ""
+}
+
 test_git_log_format() {
   given="${1}"
   expected="${2}"
