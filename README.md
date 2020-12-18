@@ -12,6 +12,9 @@ This action expose git commit data.
 - **GIT_COMMIT_COMMITTER** expose `Committer Name <committer@email.tld>`
 - **GIT_COMMIT_COMMITTER_NAME** expose `Committer Name`
 - **GIT_COMMIT_COMMITTER_EMAIL** expose `committer@email.tld`
+- **GIT_COMMIT_MESSAGE_SUBJECT** expose `the first line of the commit message`
+- **GIT_COMMIT_MESSAGE_SUBJECT_SANITIZED** expose `the-first-line-of-the-commit-message-in-sanitized-way`
+- **GIT_COMMIT_MESSAGE_BODY** expose `the body of the commit message`
 
 ## Exposed environment variables
 
@@ -29,7 +32,15 @@ This action expose git commit data.
     echo " - ${{ env.GIT_COMMIT_COMMITTER }}"
     echo " - ${{ env.GIT_COMMIT_COMMITTER_NAME }}"
     echo " - ${{ env.GIT_COMMIT_COMMITTER_EMAIL }}"
+    echo "Get message info"
+    echo " - ${{ env.GIT_COMMIT_MESSAGE_SUBJECT }}"
+    echo " - ${{ env.GIT_COMMIT_MESSAGE_SUBJECT_SANITIZED }}"
+    echo " - ${{ env.GIT_COMMIT_MESSAGE_BODY }}"
 ```
+
+## Need another commit data
+
+Feel free to contributing. Checkout [Developer guide][7]
 
 [1]: https://github.com/rlespinasse/git-commit-data-action/workflows/Build/badge.svg
 [2]: https://github.com/rlespinasse/git-commit-data-action/actions
@@ -37,3 +48,4 @@ This action expose git commit data.
 [4]: https://github.com/search?o=desc&q=rlespinasse/git-commit-data-action+path%3A.github%2Fworkflows+language%3AYAML&s=&type=Code
 [5]: https://img.shields.io/github/license/rlespinasse/git-commit-data-action
 [6]: https://github.com/rlespinasse/git-commit-data-action/blob/v1.x/LICENSE
+[7]: DEVELOPERS.md
