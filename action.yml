@@ -1,6 +1,6 @@
 # action.yml
 name: "Git Commit Data"
-description: "Action to expose git commit data"
+description: "Action to expose git commit data (author, committer, message, ...)"
 runs:
   using: "node12"
   main: "entrypoint.js"
