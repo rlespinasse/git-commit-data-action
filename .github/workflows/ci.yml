@@ -25,3 +25,48 @@ jobs:
             @semantic-release/git@9.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  os-test:
+    runs-on: ${{ matrix.os  }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+      - name: Output
+        run: |
+          echo "Get author info"
+          echo " - ${{ env.GIT_COMMIT_AUTHOR }}"
+          echo " - ${{ env.GIT_COMMIT_AUTHOR_NAME }}"
+          echo " - ${{ env.GIT_COMMIT_AUTHOR_EMAIL }}"
+          echo "Get committer info"
+          echo " - ${{ env.GIT_COMMIT_COMMITTER }}"
+          echo " - ${{ env.GIT_COMMIT_COMMITTER_NAME }}"
+          echo " - ${{ env.GIT_COMMIT_COMMITTER_EMAIL }}"
+          echo "Get message info"
+          echo " - ${{ env.GIT_COMMIT_MESSAGE_SUBJECT }}"
+          echo " - ${{ env.GIT_COMMIT_MESSAGE_SUBJECT_SANITIZED }}"
+          echo " - ${{ env.GIT_COMMIT_MESSAGE_BODY }}"
+
+  win-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+      - name: Output
+        run: |
+          echo "Get author info"
+          echo " - $env:GIT_COMMIT_AUTHOR"
+          echo " - $env:GIT_COMMIT_AUTHOR_NAME"
+          echo " - $env:GIT_COMMIT_AUTHOR_EMAIL"
+          echo "Get committer info"
+          echo " - $env:GIT_COMMIT_COMMITTER"
+          echo " - $env:GIT_COMMIT_COMMITTER_NAME"
+          echo " - $env:GIT_COMMIT_COMMITTER_EMAIL"
+          echo "Get message info"
+          echo " - $env:GIT_COMMIT_MESSAGE_SUBJECT"
+          echo " - $env:GIT_COMMIT_MESSAGE_SUBJECT_SANITIZED"
+          echo " - $env:GIT_COMMIT_MESSAGE_BODY"
