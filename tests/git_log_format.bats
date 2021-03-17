@@ -2,7 +2,7 @@
 
 apk add --no-cache git > /dev/null
 
-TEST_COMMIT_SHA=9f2cc79
+TEST_COMMIT_SHA=f554bec
 
 # Load git_log_format function
 source entrypoint.sh > /dev/null 2>&1
@@ -32,15 +32,24 @@ source entrypoint.sh > /dev/null 2>&1
 }
 
 @test "git_log_format: message subject" {
-  test_git_log_format "$TEMPLATE_COMMIT_MESSAGE_SUBJECT_FORMAT" "build: prepare github action"
+  test_git_log_format "$TEMPLATE_COMMIT_MESSAGE_SUBJECT_FORMAT" "ci: create a commit with multiple lines"
 }
 
 @test "git_log_format: message subject sanitized" {
-  test_git_log_format "$TEMPLATE_COMMIT_MESSAGE_SUBJECT_SANITIZED_FORMAT" "build-prepare-github-action"
+  test_git_log_format "$TEMPLATE_COMMIT_MESSAGE_SUBJECT_SANITIZED_FORMAT" "ci-create-a-commit-with-multiple-lines"
 }
 
 @test "git_log_format: message body" {
-  test_git_log_format "$TEMPLATE_COMMIT_MESSAGE_BODY_FORMAT" ""
+  BODY=$(cat <<-END
+Line 1
+Line 2
+Line 3
+Line 4
+
+Bottom line
+END
+)
+  test_git_log_format "$TEMPLATE_COMMIT_MESSAGE_BODY_FORMAT" "$BODY"
 }
 
 test_git_log_format() {
