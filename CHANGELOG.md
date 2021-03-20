@@ -1,3 +1,10 @@
+## [1.1.2](http://github.com/rlespinasse/git-commit-data-action/compare/1.1.1...1.1.2) (2021-03-20)
+
+
+### Bug Fixes
+
+* set heredoc end delimiter properly ([4066acb](http://github.com/rlespinasse/git-commit-data-action/commit/4066acb15f129060c6a6125195ee2e2c56da8ece))
+
 ## [1.1.1](http://github.com/rlespinasse/git-commit-data-action/compare/1.1.0...1.1.1) (2021-03-17)
 
 
