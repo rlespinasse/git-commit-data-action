@@ -1,20 +1,20 @@
-# Git Commit Data action
+# Git commit data action
 
 [![Actions Status][1]][2]
 [![Public workflows that use this action.][3]][4]
 [![Licence][5]][6]
 
-This action expose git commit data.
+This action exposes git commit data.
 
-- **GIT_COMMIT_AUTHOR** expose `Author Name <author@email.tld>`
-- **GIT_COMMIT_AUTHOR_NAME** expose `Author Name`
+- **GIT_COMMIT_AUTHOR** expose `Author name <author@email.tld>`
+- **GIT_COMMIT_AUTHOR_NAME** expose `Author name`
 - **GIT_COMMIT_AUTHOR_EMAIL** expose `author@email.tld`
-- **GIT_COMMIT_COMMITTER** expose `Committer Name <committer@email.tld>`
-- **GIT_COMMIT_COMMITTER_NAME** expose `Committer Name`
+- **GIT_COMMIT_COMMITTER** expose `Committer name <committer@email.tld>`
+- **GIT_COMMIT_COMMITTER_NAME** expose `Committer name`
 - **GIT_COMMIT_COMMITTER_EMAIL** expose `committer@email.tld`
-- **GIT_COMMIT_MESSAGE_SUBJECT** expose `the first line of the commit message`
+- **GIT_COMMIT_MESSAGE_SUBJECT** expose `The first line of the commit message`
 - **GIT_COMMIT_MESSAGE_SUBJECT_SANITIZED** expose `the-first-line-of-the-commit-message-in-sanitized-way`
-- **GIT_COMMIT_MESSAGE_BODY** expose `the body of the commit message`
+- **GIT_COMMIT_MESSAGE_BODY** expose `The body of the commit message`
 
 ## Exposed environment variables
 
@@ -38,9 +38,9 @@ This action expose git commit data.
     echo " - ${{ env.GIT_COMMIT_MESSAGE_BODY }}"
 ```
 
-## Need another commit data
+## Need other commit data
 
-Feel free to contributing. Checkout [Developer guide][7]
+Feel free to contribute. Check out the [developer guide][7]
 
 [1]: https://github.com/rlespinasse/git-commit-data-action/workflows/Build/badge.svg
 [2]: https://github.com/rlespinasse/git-commit-data-action/actions
