@@ -1,9 +1,5 @@
 # Git commit data action
 
-[![Actions Status][1]][2]
-[![Public workflows that use this action.][3]][4]
-[![Licence][5]][6]
-
 This action exposes git commit data.
 
 - **GIT_COMMIT_AUTHOR** expose `Author name <author@email.tld>`
@@ -40,12 +36,4 @@ This action exposes git commit data.
 
 ## Need other commit data
 
-Feel free to contribute. Check out the [developer guide][7]
-
-[1]: https://github.com/rlespinasse/git-commit-data-action/workflows/Build/badge.svg
-[2]: https://github.com/rlespinasse/git-commit-data-action/actions
-[3]: https://img.shields.io/endpoint?url=https%3A%2F%2Fapi-git-master.endbug.vercel.app%2Fapi%2Fgithub-actions%2Fused-by%3Faction%3Drlespinasse%2Fgit-commit-data-action%26badge%3Dtrue
-[4]: https://github.com/search?o=desc&q=rlespinasse/git-commit-data-action+path%3A.github%2Fworkflows+language%3AYAML&s=&type=Code
-[5]: https://img.shields.io/github/license/rlespinasse/git-commit-data-action
-[6]: https://github.com/rlespinasse/git-commit-data-action/blob/v1.x/LICENSE
-[7]: DEVELOPERS.md
+Feel free to contribute. Check out the [developer guide](DEVELOPERS.md)

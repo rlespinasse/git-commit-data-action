@@ -1,9 +1,12 @@
 # action.yml
 name: "Git Commit Data"
 description: "Action to expose git commit data (author, committer, message, ...)"
-runs:
-  using: "node12"
-  main: "entrypoint.js"
+author: "Romain Lespinasse"
 branding:
   icon: "settings"
   color: "gray-dark"
+runs:
+  using: "composite"
+  steps:
+    - run: $GITHUB_ACTION_PATH/git-commit-data.sh
+      shell: bash
