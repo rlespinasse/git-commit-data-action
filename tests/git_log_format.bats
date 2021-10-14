@@ -5,7 +5,7 @@ apk add --no-cache git > /dev/null
 TEST_COMMIT_SHA=f554bec
 
 # Load git_log_format function
-source entrypoint.sh > /dev/null 2>&1
+source git-commit-data.sh > /dev/null 2>&1
 
 @test "git_log_format: author" {
   test_git_log_format "$TEMPLATE_AUTHOR_FORMAT" "rlespinasse <romain.lespinasse@gmail.com>"

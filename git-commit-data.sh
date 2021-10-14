@@ -18,6 +18,7 @@ git_log_format() {
   git log -1 --pretty=format:"$pattern" "$reference"
 }
 
+echo "+ GIT_COMMIT_* environment variables"
 {
   echo "GIT_COMMIT_AUTHOR=$(git_log_format "${TEMPLATE_AUTHOR_FORMAT}" "HEAD")"
   echo "GIT_COMMIT_AUTHOR_NAME=$(git_log_format "${TEMPLATE_AUTHOR_NAME_FORMAT}" "HEAD")"
@@ -32,7 +33,4 @@ git_log_format() {
   echo 'GIT_COMMIT_MESSAGE_BODY<<GIT_COMMIT_MESSAGE_BODY_EOF'
   echo "$(git_log_format "${TEMPLATE_COMMIT_MESSAGE_BODY_FORMAT}" "HEAD")"
   echo 'GIT_COMMIT_MESSAGE_BODY_EOF'
-} >>"$GITHUB_ENV"
-
-echo "GIT_COMMIT environment variables"
-cat "$GITHUB_ENV"
+} | tee "$GITHUB_ENV"
