@@ -1,5 +1,8 @@
 #!/bin/bash
 
+TEMPLATE_SHA_FORMAT="%H"
+TEMPLATE_SHORT_SHA_FORMAT="%h"
+
 TEMPLATE_AUTHOR_FORMAT="%an <%ae>"
 TEMPLATE_AUTHOR_NAME_FORMAT="%an"
 TEMPLATE_AUTHOR_EMAIL_FORMAT="%ae"
@@ -20,6 +23,9 @@ git_log_format() {
 
 echo "+ GIT_COMMIT_* environment variables"
 {
+  echo "GIT_COMMIT_SHA=$(git_log_format "${TEMPLATE_SHA_FORMAT}" "HEAD")"
+  echo "GIT_COMMIT_SHORT_SHA=$(git_log_format "${TEMPLATE_SHORT_SHA_FORMAT}" "HEAD")"
+
   echo "GIT_COMMIT_AUTHOR=$(git_log_format "${TEMPLATE_AUTHOR_FORMAT}" "HEAD")"
   echo "GIT_COMMIT_AUTHOR_NAME=$(git_log_format "${TEMPLATE_AUTHOR_NAME_FORMAT}" "HEAD")"
   echo "GIT_COMMIT_AUTHOR_EMAIL=$(git_log_format "${TEMPLATE_AUTHOR_EMAIL_FORMAT}" "HEAD")"
