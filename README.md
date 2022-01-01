@@ -2,6 +2,8 @@
 
 This action exposes git commit data.
 
+- **GIT_COMMIT_SHA** expose `commit hash`
+- **GIT_COMMIT_SHORT_SHA** expose `abbreviated commit hash`
 - **GIT_COMMIT_AUTHOR** expose `Author name <author@email.tld>`
 - **GIT_COMMIT_AUTHOR_NAME** expose `Author name`
 - **GIT_COMMIT_AUTHOR_EMAIL** expose `author@email.tld`
@@ -20,6 +22,9 @@ This action exposes git commit data.
 
 - name: Print git commit data
   run: |
+    echo "Get commit info"
+    echo " - ${{ env.GIT_COMMIT_SHA }}"
+    echo " - ${{ env.GIT_COMMIT_SHORT_SHA }}"
     echo "Get author info"
     echo " - ${{ env.GIT_COMMIT_AUTHOR }}"
     echo " - ${{ env.GIT_COMMIT_AUTHOR_NAME }}"

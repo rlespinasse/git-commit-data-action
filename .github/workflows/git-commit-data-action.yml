@@ -26,6 +26,9 @@ jobs:
       - uses: ./
       - name: Output
         run: |
+          echo "Get commit info"
+          echo " - ${{ env.GIT_COMMIT_SHA }}"
+          echo " - ${{ env.GIT_COMMIT_SHORT_SHA }}"
           echo "Get author info"
           echo " - ${{ env.GIT_COMMIT_AUTHOR }}"
           echo " - ${{ env.GIT_COMMIT_AUTHOR_NAME }}"

@@ -2,10 +2,18 @@
 
 apk add --no-cache git > /dev/null
 
-TEST_COMMIT_SHA=f554bec
+TEST_COMMIT_SHA=f554bec660038601b8882c1e0cc5d0d8fcebf221
 
 # Load git_log_format function
 source git-commit-data.sh > /dev/null 2>&1
+
+@test "git_log_format: sha" {
+  test_git_log_format "$TEMPLATE_SHA_FORMAT" "f554bec660038601b8882c1e0cc5d0d8fcebf221"
+}
+
+@test "git_log_format: short sha" {
+  test_git_log_format "$TEMPLATE_SHORT_SHA_FORMAT" "f554bec"
+}
 
 @test "git_log_format: author" {
   test_git_log_format "$TEMPLATE_AUTHOR_FORMAT" "rlespinasse <romain.lespinasse@gmail.com>"
