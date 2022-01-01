@@ -1,7 +1,7 @@
 name: git-commit-data-action
 on: push
 jobs:
-  git-commit-data-action-script-testing:
+  script-testing:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -12,12 +12,8 @@ jobs:
       - uses: docker://ffurrer/bats:latest
         with:
           args: "--recursive ."
-      - name: Release this GitHub Action
-        uses: rlespinasse/release-that@v1.x
-        with:
-          without-prefix: true
 
-  git-commit-data-action-os-testing:
+  os-testing:
     runs-on: ${{ matrix.os  }}
     strategy:
       matrix:
@@ -46,11 +42,11 @@ jobs:
   git-commit-data-action-release:
     runs-on: ubuntu-latest
     needs:
-      - git-commit-data-action-script-testing
-      - git-commit-data-action-os-testing
+      - script-testing
+      - os-testing
     steps:
       - uses: actions/checkout@v2
       - name: Release this GitHub Action
-        uses: rlespinasse/release-that@v1.x
+        uses: rlespinasse/release-that@v1
         with:
           without-prefix: true
