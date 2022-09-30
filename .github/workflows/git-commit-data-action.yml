@@ -1,8 +1,9 @@
 name: git-commit-data-action
 on:
+  pull_request:
   push:
     branches:
-      - '*'
+      - v1.x
 jobs:
   script-testing:
     runs-on: ubuntu-latest
