@@ -1,11 +1,13 @@
 #!/usr/bin/env bats
 
-apk add --no-cache git > /dev/null
+# Prepare git
+apk add --no-cache git >/dev/null
+git config --global --add safe.directory '*'
 
 TEST_COMMIT_SHA=f554bec660038601b8882c1e0cc5d0d8fcebf221
 
 # Load git_log_format function
-source git-commit-data.sh > /dev/null 2>&1
+source git-commit-data.sh >/dev/null 2>&1
 
 @test "git_log_format: sha" {
   test_git_log_format "$TEMPLATE_SHA_FORMAT" "f554bec660038601b8882c1e0cc5d0d8fcebf221"
@@ -48,7 +50,8 @@ source git-commit-data.sh > /dev/null 2>&1
 }
 
 @test "git_log_format: message body" {
-  BODY=$(cat <<-END
+  BODY=$(
+    cat <<-END
 Line 1
 Line 2
 Line 3
@@ -56,7 +59,7 @@ Line 4
 
 Bottom line
 END
-)
+  )
   test_git_log_format "$TEMPLATE_COMMIT_MESSAGE_BODY_FORMAT" "$BODY"
 }
 

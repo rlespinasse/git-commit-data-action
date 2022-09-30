@@ -1,17 +1,20 @@
 name: git-commit-data-action
-on: push
+on:
+  push:
+    branches:
+      - '*'
 jobs:
   script-testing:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           # Need to download all history in order
           # to make the tests work properly
           fetch-depth: 0
       - uses: docker://ffurrer/bats:latest
         with:
-          args: "--recursive ."
+          args: '--recursive .'
 
   os-testing:
     runs-on: ${{ matrix.os  }}
@@ -48,8 +51,6 @@ jobs:
       - script-testing
       - os-testing
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Release this GitHub Action
         uses: rlespinasse/release-that@v1
-        with:
-          without-prefix: true
