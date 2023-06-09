@@ -5,8 +5,50 @@ author: "Romain Lespinasse"
 branding:
   icon: "settings"
   color: "gray-dark"
+inputs:
+  publish-env:
+    description: "Publish slugs as environment variables"
+    default: "true"
+    required: true
+outputs:
+  sha:
+    description: "commit hash"
+    value: ${{ steps.commit-data.outputs.sha }}
+  short-sha:
+    description: "abbreviated commit hash"
+    value: ${{ steps.commit-data.outputs.short-sha }}
+  author:
+    description: "Author name <author@email.tld>"
+    value: ${{ steps.commit-data.outputs.author }}
+  author-name:
+    description: "Author name"
+    value: ${{ steps.commit-data.outputs.author-name }}
+  author-email:
+    description: "author@email.tld"
+    value: ${{ steps.commit-data.outputs.author-email }}
+  committer:
+    description: "Committer name <committer@email.tld>"
+    value: ${{ steps.commit-data.outputs.committer }}
+  committer-name:
+    description: "Committer name"
+    value: ${{ steps.commit-data.outputs.committer-name }}
+  committer-email:
+    description: "committer@email.tld"
+    value: ${{ steps.commit-data.outputs.committer-email }}
+  message-subject:
+    description: "The first line of the commit message"
+    value: ${{ steps.commit-data.outputs.message-subject }}
+  message-subject-sanitized:
+    description: "the-first-line-of-the-commit-message-in-sanitized-way"
+    value: ${{ steps.commit-data.outputs.message-subject-sanitized }}
+  message-body:
+    description: "The body of the commit message"
+    value: ${{ steps.commit-data.outputs.message-body }}
 runs:
   using: "composite"
   steps:
-    - run: $GITHUB_ACTION_PATH/git-commit-data.sh
+    - id: commit-data
+      run: $GITHUB_ACTION_PATH/git-commit-data.sh
       shell: bash
+      env:
+        INPUT_PUBLISH_ENV: ${{ inputs.publish-env }}
