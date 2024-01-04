@@ -8,7 +8,7 @@ jobs:
   script-testing:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           # Need to download all history in order
           # to make the tests work properly
@@ -26,7 +26,7 @@ jobs:
           - macos-latest
           - windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./
       - name: Output
         run: |
@@ -52,6 +52,6 @@ jobs:
       - script-testing
       - os-testing
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Release this GitHub Action
         uses: rlespinasse/release-that@v1
