@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - v1.x
+permissions: read-all
 jobs:
   script-testing:
     runs-on: ubuntu-latest
@@ -46,14 +47,24 @@ jobs:
           echo " - ${{ env.GIT_COMMIT_MESSAGE_SUBJECT_SANITIZED }}"
           echo " - ${{ env.GIT_COMMIT_MESSAGE_BODY }}"
 
-  git-commit-data-action-release:
+  release:
     runs-on: ubuntu-latest
     needs:
       - script-testing
       - os-testing
+    permissions:
+      contents: write
+      issues: write
+      id-token: write
+      packages: write
+    concurrency:
+      group: release-${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
-      - name: Release this GitHub Action
+        with:
+          persist-credentials: false
+
+      - name: Release That
         uses: rlespinasse/release-that@v1
         with:
           github-token: ${{ secrets.GH_TOKEN }}
