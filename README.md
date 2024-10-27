@@ -41,4 +41,4 @@ This action exposes git commit data.
 
 ## Need other commit data
 
-Feel free to contribute. Check out the [developer guide](DEVELOPERS.md)
+Feel free to contribute. Check out the [developer guide](DEVELOPER.md)
