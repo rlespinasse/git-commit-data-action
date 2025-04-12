@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
       - uses: docker://ffurrer/bats:latest
         with:
-          args: '--recursive .'
+          args: "--recursive ."
 
   os-testing:
     runs-on: ${{ matrix.os  }}
