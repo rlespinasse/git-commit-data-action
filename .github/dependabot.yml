@@ -1,13 +1,11 @@
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     groups:
       dependencies:
         patterns:
-          - "*"
-    reviewers:
-      - "rlespinasse"
-    labels: [ ]
+          - '*'
+    labels: []
