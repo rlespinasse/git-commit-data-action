@@ -14,6 +14,7 @@ jobs:
           # Need to download all history in order
           # to make the tests work properly
           fetch-depth: 0
+          persist-credentials: false
       - uses: docker://ffurrer/bats:latest
         with:
           args: "--recursive ."
@@ -28,6 +29,8 @@ jobs:
           - windows-latest
     steps:
       - uses: actions/checkout@4f1f4aec02e41874fa0262ea8ff5172d7978ad1e # v7.0.0
+        with:
+          persist-credentials: false
       - uses: ./
       - name: Output
         run: |
