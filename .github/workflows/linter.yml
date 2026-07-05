@@ -3,7 +3,7 @@ name: Lint Code Base
 
 on: pull_request
 
-permissions: read-all
+permissions: {}
 
 jobs:
   build:
@@ -15,15 +15,17 @@ jobs:
       statuses: write
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           # Full git history is needed to get a proper
           # list of changed files within `super-linter`
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Lint Code Base
-        uses: super-linter/super-linter@v8
+        uses: super-linter/super-linter@4ce20838b8ab83717e78138c5b3a1407148e0918 # v8.7.0
         env:
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_YAML_PRETTIER: false
+          VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

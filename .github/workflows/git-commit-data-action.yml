@@ -4,16 +4,18 @@ on:
   push:
     branches:
       - v1.x
-permissions: read-all
+permissions: {}
+  # Most jobs need minimal permissions; release job overrides with specific needs
 jobs:
   script-testing:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           # Need to download all history in order
           # to make the tests work properly
           fetch-depth: 0
+          persist-credentials: false
       - uses: docker://ffurrer/bats:latest
         with:
           args: "--recursive ."
@@ -27,25 +29,27 @@ jobs:
           - macos-latest
           - windows-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
       - uses: ./
       - name: Output
         run: |
           echo "Get commit info"
-          echo " - ${{ env.GIT_COMMIT_SHA }}"
-          echo " - ${{ env.GIT_COMMIT_SHORT_SHA }}"
+          printf '%s\n' " - ${{ env.GIT_COMMIT_SHA }}"
+          printf '%s\n' " - ${{ env.GIT_COMMIT_SHORT_SHA }}"
           echo "Get author info"
-          echo " - ${{ env.GIT_COMMIT_AUTHOR }}"
-          echo " - ${{ env.GIT_COMMIT_AUTHOR_NAME }}"
-          echo " - ${{ env.GIT_COMMIT_AUTHOR_EMAIL }}"
+          printf '%s\n' " - ${{ env.GIT_COMMIT_AUTHOR }}"
+          printf '%s\n' " - ${{ env.GIT_COMMIT_AUTHOR_NAME }}"
+          printf '%s\n' " - ${{ env.GIT_COMMIT_AUTHOR_EMAIL }}"
           echo "Get committer info"
-          echo " - ${{ env.GIT_COMMIT_COMMITTER }}"
-          echo " - ${{ env.GIT_COMMIT_COMMITTER_NAME }}"
-          echo " - ${{ env.GIT_COMMIT_COMMITTER_EMAIL }}"
+          printf '%s\n' " - ${{ env.GIT_COMMIT_COMMITTER }}"
+          printf '%s\n' " - ${{ env.GIT_COMMIT_COMMITTER_NAME }}"
+          printf '%s\n' " - ${{ env.GIT_COMMIT_COMMITTER_EMAIL }}"
           echo "Get message info"
-          echo " - ${{ env.GIT_COMMIT_MESSAGE_SUBJECT }}"
-          echo " - ${{ env.GIT_COMMIT_MESSAGE_SUBJECT_SANITIZED }}"
-          echo " - ${{ env.GIT_COMMIT_MESSAGE_BODY }}"
+          printf '%s\n' " - ${{ env.GIT_COMMIT_MESSAGE_SUBJECT }}"
+          printf '%s\n' " - ${{ env.GIT_COMMIT_MESSAGE_SUBJECT_SANITIZED }}"
+          printf '%s\n' " - ${{ env.GIT_COMMIT_MESSAGE_BODY }}"
 
   release:
     runs-on: ubuntu-latest
@@ -60,11 +64,11 @@ jobs:
     concurrency:
       group: release-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
 
       - name: Release That
-        uses: rlespinasse/release-that@v1
+        uses: rlespinasse/release-that@cb1bc2bf712d0fb87c82867852abb1b5128554fb # v1.16.0
         with:
           github-token: ${{ secrets.GH_TOKEN }}
