@@ -9,7 +9,7 @@ jobs:
   script-testing:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@4f1f4aec02e41874fa0262ea8ff5172d7978ad1e # v7.0.0
         with:
           # Need to download all history in order
           # to make the tests work properly
@@ -27,7 +27,7 @@ jobs:
           - macos-latest
           - windows-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@4f1f4aec02e41874fa0262ea8ff5172d7978ad1e # v7.0.0
       - uses: ./
       - name: Output
         run: |
@@ -60,11 +60,11 @@ jobs:
     concurrency:
       group: release-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@4f1f4aec02e41874fa0262ea8ff5172d7978ad1e # v7.0.0
         with:
           persist-credentials: false
 
       - name: Release That
-        uses: rlespinasse/release-that@v1
+        uses: rlespinasse/release-that@23b4b6ed958ed78b7ffc36d2ee940bd8f5fd40c3 # v1.16.0
         with:
           github-token: ${{ secrets.GH_TOKEN }}
