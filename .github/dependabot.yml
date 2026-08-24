@@ -4,8 +4,15 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+    cooldown:
+      default-days: 5
+    commit-message:
+      prefix: 'build'
+      include: 'scope'
     groups:
       dependencies:
         patterns:
           - '*'
-    labels: []
+        update-types:
+          - 'minor'
+          - 'patch'
